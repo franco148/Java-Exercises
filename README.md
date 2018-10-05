@@ -1,2 +1,2 @@
-# TestContinuousIntegrationProcess001
-This repository is to test Continuous Integration with Jenkis and TFS installer
+# Java Exercises and Examples
+This repository is to test some concepts. Put into practice the theory with practice.
