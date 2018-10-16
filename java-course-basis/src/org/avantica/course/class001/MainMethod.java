@@ -1,4 +1,4 @@
-package org.avantica.course.class002;
+package org.avantica.course.class001;
 
 /**
  * MAIN METHOD

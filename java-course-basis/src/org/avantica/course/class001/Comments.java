@@ -1,4 +1,4 @@
-package org.avantica.course.class003;
+package org.avantica.course.class001;
 
 /**
  * Comments

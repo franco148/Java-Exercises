@@ -1,4 +1,4 @@
-package org.avantica.course.class004;
+package org.avantica.course.class001;
 
 /**
  * PACKAGES

@@ -21,3 +21,7 @@ This creates sandbox that makes it hard for Java code to do any damage to
 #### Classes and Objects
 
 ![classvsobject](https://user-images.githubusercontent.com/10811329/46990060-974bcb00-d0cd-11e8-9d98-71a1a39a9a88.PNG)
+
+#### Main method structure.
+
+![functiondeclaration](https://user-images.githubusercontent.com/10811329/46990634-44bfde00-d0d0-11e8-8eba-f659eb3b8bbf.png)
