@@ -5,7 +5,7 @@ package org.avantica.course.class001;
  * CLASS STRUCTURE
  * =================================
  * - Variables: Also known al fields of a class.
- * - Methods:
+ * - Methods: The behavior of a class.
  */
 public class PersonClassStructure {
 
@@ -24,6 +24,9 @@ public class PersonClassStructure {
     /**
      * For implementing a method required to take into account the following structure:
      * <access modifier> <return type> <name of the method> () { ...... };
+     *
+     * If we need to auto generate the Getters and Setters of a class press: ALT + INSERT and select
+     * the option: Getters & Setters
      */
 
     // Usually we need to define getters and setters as a convention.
