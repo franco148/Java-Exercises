@@ -1,5 +1,24 @@
 #Java
 
+## Course Overview
+
+### Class 1
+* Class Structure
+* Main Method
+* Comments
+* Packages and imports
+* Naming Conflicts
+* Static imports
+* Understanding primitive data types.
+* Whole Numeric Primitives
+* Declaring and initializing variables.
+* Understanding default initialization of primitives.
+* Variable scope.
+* Ordering elements in class.
+* Understanding Null.
+* Primitive wrapper types.
+
+
 #### Characteristics
 * Object Oriented Language: It means all code is defined in classes and most
  of those classes can be instantiated into objects. Java allows functional
