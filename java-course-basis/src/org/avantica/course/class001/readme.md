@@ -44,3 +44,8 @@ This creates sandbox that makes it hard for Java code to do any damage to
 #### Main method structure.
 
 ![functiondeclaration](https://user-images.githubusercontent.com/10811329/46990634-44bfde00-d0d0-11e8-8eba-f659eb3b8bbf.png)
+
+#### Primitive data types
+
+
+![primitivedatatype](https://user-images.githubusercontent.com/10811329/46992750-99b42200-d0d9-11e8-99c9-81a0f205b8bd.jpg)
