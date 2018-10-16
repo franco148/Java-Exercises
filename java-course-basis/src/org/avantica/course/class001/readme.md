@@ -20,4 +20,4 @@ This creates sandbox that makes it hard for Java code to do any damage to
   
 #### Classes and Objects
 
-![ClassVsObjectImage](./ClassVsObject.png)
+![classvsobject](https://user-images.githubusercontent.com/10811329/46990060-974bcb00-d0cd-11e8-9d98-71a1a39a9a88.PNG)
