@@ -14,7 +14,6 @@
 * Declaring and initializing variables.
 * Understanding default initialization of primitives.
 * Variable scope.
-* Ordering elements in class.
 * Understanding Null.
 * Primitive wrapper types.
 
