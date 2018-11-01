@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class PyramidApplication {
 
+    //region Menu Constants
+    private static final String MENU_BAR = "";
+    //endregion
     private static final int MULTIPLICATION_CONSTANT = 2;
     private static final int SUBTRACTION_CONSTANT = 1;
     private static final int DEFAULT_NUMBER_OF_SPACES = 0;
@@ -15,18 +18,38 @@ public class PyramidApplication {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int enteredNumber = 0;
-        int number = Integer.parseInt("hola");
+        printMainMenu();
+
+        int enteredNumber;
 
         do {
-            enteredNumber = scanner.nextInt();
+            try {
+                enteredNumber = scanner.nextInt();
+            } catch (Exception ex) {
+                System.out.print("The value you entered is incorrect, lease tray again. Enter an integer number: ");
+                scanner = new Scanner(System.in);
+                enteredNumber = 1;
+                continue;
+            }
+
+            if (!isValidAmount(enteredNumber)) {
+                enteredNumber = 1;
+                System.out.println("Invalid amount for drawing the pyramid.");
+                scanner = new Scanner(System.in);
+                continue;
+            }
 //            PYRAMID_SYMBOL = scanner.next
             String pyr = drawRow(enteredNumber, DEFAULT_NUMBER_OF_SPACES);
             System.out.println(pyr);
-        } while (enteredNumber > 0 && enteredNumber < 10);
+            System.out.print("Please enter an integer number: ");
+        } while (isValidAmount(enteredNumber));
     }
 
     private static String drawRow(int numberOfRows, int spaces) {
+
+        if (numberOfRows < 1) {
+            return "Invalid amount for drawing the pyramid.";
+        }
 
         if (numberOfRows == 1) {
             String spacesRow = buildCharacters(EMPTY_CHARACTER, spaces);
@@ -50,5 +73,23 @@ public class PyramidApplication {
         }
 
         return builder.toString();
+    }
+
+    /**
+     * This method verifies
+     * @param numberOfLevels
+     * @return
+     */
+    private static boolean isValidAmount(int numberOfLevels) {
+        return numberOfLevels >= 0 && numberOfLevels < 10;
+    }
+
+    private static void printMainMenu() {
+        System.out.println("=======================================================================================");
+        System.out.println("==========                           PYRAMID DRAWER                          ==========");
+        System.out.println("=======================================================================================");
+        System.out.println("The value you enter needs to be in the range of: [n > 0 and n < 10]");
+        System.out.println("=======================================================================================");
+        System.out.print("Please enter an integer number: ");
     }
 }
