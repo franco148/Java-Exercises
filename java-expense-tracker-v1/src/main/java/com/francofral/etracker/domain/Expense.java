@@ -1,9 +1,14 @@
 package com.francofral.etracker.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+@Getter
+@Setter
 
 @Entity
 @Table(name = "expenses")
@@ -13,7 +18,7 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String name;
 
     private String details;
@@ -24,15 +29,8 @@ public class Expense {
     @Column(nullable = false, updatable = false)
     private LocalDateTime dateTime;
 
-    @OneToOne(optional = false, orphanRemoval = true)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
