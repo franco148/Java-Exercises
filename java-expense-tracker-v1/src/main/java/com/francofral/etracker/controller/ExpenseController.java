@@ -2,6 +2,7 @@ package com.francofral.etracker.controller;
 
 import com.francofral.etracker.domain.Expense;
 import com.francofral.etracker.domain.GroupBy;
+import com.francofral.etracker.dto.ExpenseByGroupCriteria;
 import com.francofral.etracker.repository.CategoryRepository;
 import com.francofral.etracker.repository.ExpensesRepository;
 import lombok.AllArgsConstructor;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @AllArgsConstructor
 @RestController
@@ -41,9 +43,23 @@ public class ExpenseController {
     }
 
     @GetMapping
-    public List<Expense> getExpenses(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+    public List<ExpenseByGroupCriteria> getExpenses(@RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                      @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                      @RequestParam(name = "groupBy", defaultValue = "MONTHLY") GroupBy groupBy) {
-        return null;
+
+        LocalDateTime fromDateTime = fromDate.atStartOfDay();
+        LocalDateTime endDateTime = LocalDateTime.of(toDate, LocalTime.MAX);
+
+        List<ExpenseByGroupCriteria> expensesResponse = new ArrayList<>();
+
+        switch (groupBy) {
+            case CATEGORY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedByCategory(fromDateTime, endDateTime));
+            case YEARLY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedYearly(fromDateTime, endDateTime));
+            case MONTHLY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedMonthly(fromDateTime, endDateTime));
+            case WEEKLY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedWeekly(fromDateTime, endDateTime));
+            case DAILY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedDaily(fromDateTime, endDateTime));
+        }
+
+        return expensesResponse;
     }
 }
