@@ -55,4 +55,7 @@ public interface ExpensesRepository extends JpaRepository<Expense, Long> {
     """, nativeQuery = true)
     List<ExpenseByGroupCriteria> getExpensesGroupedDaily(@Param("fromDate") LocalDateTime fromDate,
                                                          @Param("toDate") LocalDateTime toDate);
+
+    @Query("SELECT DISTINCT(YEAR(e.dateTime)) FROM Expense e GROUP BY e.dateTime")
+    List<Integer> getRegisteredYears();
 }
