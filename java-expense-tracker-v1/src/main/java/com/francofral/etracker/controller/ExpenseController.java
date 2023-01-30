@@ -17,6 +17,7 @@ import java.util.List;
 
 import static java.util.Objects.isNull;
 
+@CrossOrigin
 @AllArgsConstructor
 @RestController
 @RequestMapping("/expenses")
@@ -61,5 +62,10 @@ public class ExpenseController {
         }
 
         return expensesResponse;
+    }
+
+    @GetMapping("/years")
+    public List<Integer> getRegisteredYears() {
+        return expensesRepository.getRegisteredYears();
     }
 }
