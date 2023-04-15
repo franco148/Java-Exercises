@@ -59,6 +59,7 @@ public class ExpenseController {
             case MONTHLY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedMonthly(fromDateTime, endDateTime));
             case WEEKLY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedWeekly(fromDateTime, endDateTime));
             case DAILY -> expensesResponse.addAll(expensesRepository.getExpensesGroupedDaily(fromDateTime, endDateTime));
+            default -> expensesResponse.addAll(expensesRepository.getNonGroupedExpenses(fromDateTime, endDateTime));
         }
 
         return expensesResponse;

@@ -12,7 +12,7 @@ import java.util.List;
 public interface ExpensesRepository extends JpaRepository<Expense, Long> {
 
     @Query(value = """
-        SELECT e.category_id AS categoryId, c.name AS categoryName, sum(e.amount) AS totalExpenses 
+        SELECT e.category_id AS categoryId, c.name AS categoryName, count(*) AS numberOfOperations, 'CATEGORY' AS groupCriteria, sum(e.amount) AS totalExpenses 
         FROM expenses e JOIN categories c ON c.id = e.category_id 
         WHERE e.date_time BETWEEN :fromDate AND :toDate
         GROUP BY category_id
@@ -21,7 +21,7 @@ public interface ExpensesRepository extends JpaRepository<Expense, Long> {
                                                               @Param("toDate") LocalDateTime toDate);
 
     @Query(value = """
-        SELECT year(date_time) AS periodCriteria, count(*) AS numberOfOperations, sum(amount) AS totalExpenses 
+        SELECT year(date_time) AS periodCriteria, count(*) AS numberOfOperations, 'YEARLY' AS groupCriteria, sum(amount) AS totalExpenses 
         FROM expenses e 
         WHERE date_time BETWEEN :fromDate AND :toDate 
         GROUP BY year(date_time)
@@ -30,7 +30,7 @@ public interface ExpensesRepository extends JpaRepository<Expense, Long> {
                                                           @Param("toDate") LocalDateTime toDate);
 
     @Query(value = """
-        SELECT month(date_time) AS periodCriteria, count(*) AS numberOfOperations, sum(amount) AS totalExpenses 
+        SELECT month(date_time) AS periodCriteria, count(*) AS numberOfOperations, 'MONTHLY' AS groupCriteria, sum(amount) AS totalExpenses 
         FROM expenses e 
         WHERE date_time BETWEEN :fromDate AND :toDate 
         GROUP BY month(date_time)
@@ -39,7 +39,7 @@ public interface ExpensesRepository extends JpaRepository<Expense, Long> {
                                                            @Param("toDate") LocalDateTime toDate);
 
     @Query(value = """
-        SELECT week(date_time) AS periodCriteria, count(*) AS numberOfOperations, sum(amount) AS totalExpenses 
+        SELECT week(date_time) AS periodCriteria, count(*) AS numberOfOperations, 'WEEKLY' AS groupCriteria, sum(amount) AS totalExpenses 
         FROM expenses e 
         WHERE date_time BETWEEN :fromDate AND :toDate 
         GROUP BY week(date_time)
@@ -48,13 +48,21 @@ public interface ExpensesRepository extends JpaRepository<Expense, Long> {
                                                           @Param("toDate") LocalDateTime toDate);
 
     @Query(value = """
-        SELECT day(date_time) AS periodCriteria, count(*) AS numberOfOperations, sum(amount) AS totalExpenses 
+        SELECT day(date_time) AS periodCriteria, count(*) AS numberOfOperations, 'DAILY' AS groupCriteria, sum(amount) AS totalExpenses 
         FROM expenses e 
         WHERE date_time BETWEEN :fromDate AND :toDate 
         GROUP BY day(date_time)
     """, nativeQuery = true)
     List<ExpenseByGroupCriteria> getExpensesGroupedDaily(@Param("fromDate") LocalDateTime fromDate,
                                                          @Param("toDate") LocalDateTime toDate);
+
+    @Query(value = """
+        SELECT e.category_id AS categoryId, c.name AS categoryName, 1 AS numberOfOperations, 'NONE' AS groupCriteria, e.amount AS totalExpenses 
+        FROM expenses e JOIN categories c ON c.id = e.category_id 
+        WHERE e.date_time BETWEEN :fromDate AND :toDate
+    """, nativeQuery = true)
+    List<ExpenseByGroupCriteria> getNonGroupedExpenses(@Param("fromDate") LocalDateTime fromDate,
+                                                       @Param("toDate") LocalDateTime toDate);
 
     @Query("SELECT DISTINCT(YEAR(e.dateTime)) FROM Expense e GROUP BY e.dateTime")
     List<Integer> getRegisteredYears();

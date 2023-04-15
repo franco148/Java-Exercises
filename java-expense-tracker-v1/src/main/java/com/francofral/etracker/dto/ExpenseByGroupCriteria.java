@@ -1,5 +1,7 @@
 package com.francofral.etracker.dto;
 
+import com.francofral.etracker.domain.GroupBy;
+
 import java.math.BigDecimal;
 
 public interface ExpenseByGroupCriteria {
@@ -8,6 +10,7 @@ public interface ExpenseByGroupCriteria {
     String getCategoryName();
     BigDecimal getTotalExpenses();
 
+    GroupBy getGroupCriteria();
     Integer getPeriodCriteria();
     Integer getNumberOfOperations();
 
