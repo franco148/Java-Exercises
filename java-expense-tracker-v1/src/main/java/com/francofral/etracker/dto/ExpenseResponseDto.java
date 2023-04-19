@@ -5,7 +5,7 @@ import com.francofral.etracker.domain.GroupBy;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public interface ExpenseByGroupCriteria {
+public interface ExpenseResponseDto {
 
     Long getCategoryId();
     String getCategoryName();
