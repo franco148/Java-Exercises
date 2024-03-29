@@ -38,7 +38,10 @@ public class Exercise5 {
         } else if (n == 1) {
             return 1;
         } else {
-            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+            long fibonacci = fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+            System.out.print(fibonacci + " ");
+
+            return fibonacci;
         }
     }
 }
