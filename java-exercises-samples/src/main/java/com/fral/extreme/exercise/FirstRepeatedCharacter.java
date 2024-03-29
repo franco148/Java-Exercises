@@ -10,9 +10,13 @@ public class FirstRepeatedCharacter {
         String input2 = "This is an example - an example is this";
         String input3 = "This is an example for verifying the first repeated character - what position is it?";
 
-        showFirstRepeatedInfoApproach2(Arrays.asList(input1.split(" ")));
-        showFirstRepeatedInfoApproach2(Arrays.asList(input2.split(" ")));
-        showFirstRepeatedInfoApproach2(Arrays.asList(input3.split(" ")));
+        showFirstRepeatedInfoApproach1(Arrays.asList(input1.split(" ")));
+        showFirstRepeatedInfoApproach1(Arrays.asList(input2.split(" ")));
+        showFirstRepeatedInfoApproach1(Arrays.asList(input3.split(" ")));
+
+//        showFirstRepeatedInfoApproach2(Arrays.asList(input1.split(" ")));
+//        showFirstRepeatedInfoApproach2(Arrays.asList(input2.split(" ")));
+//        showFirstRepeatedInfoApproach2(Arrays.asList(input3.split(" ")));
     }
 
     private static void showFirstRepeatedInfoApproach1(List<String> inputList) {

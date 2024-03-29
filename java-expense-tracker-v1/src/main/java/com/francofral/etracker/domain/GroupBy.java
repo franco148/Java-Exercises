@@ -5,5 +5,6 @@ public enum GroupBy {
     YEARLY,
     MONTHLY,
     WEEKLY,
-    DAILY
+    DAILY,
+    NONE
 }
