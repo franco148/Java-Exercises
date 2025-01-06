@@ -30,7 +30,11 @@ public class Exercise2 {
         // approach3(input);
 
         // Running approach 2
-        approach4Sorted(input);
+//        approach4Sorted(input);
+
+        // Running approach 5
+        approach5Sorted(input);
+
     }
 
     private static void approach1(String input) {
@@ -85,5 +89,19 @@ public class Exercise2 {
                 );
 
         countByWordSorted.forEach((key, value) -> System.out.println(String.format("Word [%s] - repeated [%s] times.", key, value)));
+    }
+
+    private static void approach5Sorted(String input) {
+        SortedMap<String, Integer> wordCounterMap = new TreeMap<>();
+
+//        SortedMap<String, Long> m2 = Arrays.stream(input.split(" "))
+//                .collect(groupingBy(Function.identity(), counting()));
+
+        List<String> wordList = new ArrayList<>(Arrays.asList(input.split(" ")));
+        for (String word : wordList) {
+            wordCounterMap.put(word, wordCounterMap.getOrDefault(word, 0) + 1);
+        }
+
+        wordCounterMap.forEach((key, value) -> System.out.println(String.format("Word [%s] - repeated [%s] times.", key, value)));
     }
 }
