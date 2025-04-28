@@ -1,6 +1,8 @@
 package com.fral.extreme.algorithms;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Given:
@@ -46,4 +48,39 @@ public class Exercise1 {
                      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                      .toString();
     }
+
+    // APPROACH 2: SORT
+//    private static String getSortedString(String source) {
+//        // Converting input string to character array
+//        char tempArray[] = source.toCharArray();
+//
+//        // Sorting temp array using
+//        Arrays.sort(tempArray);
+//
+//        // Returning new sorted string
+//        return new String(tempArray);
+//    }
+
+
+    // APPROACH 3: SORT
+//    private static String getSortedString(String source) {
+//        return Stream.of(source.split(""))
+//                .sorted()
+//                .collect(Collectors.joining());
+//    }
+
+
+    // SORT REVERSE
+//    private static String getReverseSortedString(String source) {
+//        StringBuilder builder = new StringBuilder(source);
+//        builder.reverse();
+//
+//        return builder.toString();
+//    }
+
+    // APPROACH 2: SORT REVERSE
+//    private static String getReverseSortedString(String source) {
+//        Character[] tempArray = (Character[]) source.toCharArray();
+//        Arrays.sort(tempArray, Comparator.reverseOrder());
+//    }
 }
